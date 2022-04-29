@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "RecipeManagementApp": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:59990;",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+        "AUTH_AUTHORITY": "https://localhost:3385",
+        "AUTH_CLIENT_ID": "recipe_management.bff",
+        "AUTH_CLIENT_SECRET": "974d6f71-d41b-4601-9a7a-a33081f80687"
+      }
+    }
+  }
+}

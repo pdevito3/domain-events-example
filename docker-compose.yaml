@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  recipemanagement-db:
+    image: postgres
+    restart: always
+    ports:
+      - '59989:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev_recipemanagement
+    volumes:
+      - recipemanagement-data:/var/lib/postgresql/data
+
+  rmq-message-broker:
+    image: masstransit/rabbitmq
+    restart: always
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+#    port mappings: https://www.jaegertracing.io/docs/1.32/getting-started/
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14250:14250"
+      - "14268:14268"
+      - "14269:14269"
+      - "9411:9411"
+
+        
+volumes:
+  recipemanagement-data:

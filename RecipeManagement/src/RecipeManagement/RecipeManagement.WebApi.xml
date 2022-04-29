@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RecipeManagement</name>
+    </assembly>
+    <members>
+        <member name="M:RecipeManagement.Controllers.v1.AuthorsController.GetAuthors(SharedKernel.Dtos.RecipeManagement.Author.AuthorParametersDto)">
+             <summary>
+             Gets a list of all Authors.
+             </summary>
+             <response code="200">Author list returned successfully.</response>
+             <response code="400">Author has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Author.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.AuthorsController.GetAuthor(System.Guid)">
+            <summary>
+            Gets a single Author by ID.
+            </summary>
+            <response code="200">Author record returned successfully.</response>
+            <response code="400">Author has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Author.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.AuthorsController.AddAuthor(SharedKernel.Dtos.RecipeManagement.Author.AuthorForCreationDto)">
+            <summary>
+            Creates a new Author record.
+            </summary>
+            <response code="201">Author created.</response>
+            <response code="400">Author has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Author.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.AuthorsController.UpdateAuthor(System.Guid,SharedKernel.Dtos.RecipeManagement.Author.AuthorForUpdateDto)">
+            <summary>
+            Updates an entire existing Author.
+            </summary>
+            <response code="204">Author updated.</response>
+            <response code="400">Author has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Author.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.AuthorsController.DeleteAuthor(System.Guid)">
+            <summary>
+            Deletes an existing Author record.
+            </summary>
+            <response code="204">Author deleted.</response>
+            <response code="400">Author has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Author.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.IngredientsController.GetIngredients(SharedKernel.Dtos.RecipeManagement.Ingredient.IngredientParametersDto)">
+             <summary>
+             Gets a list of all Ingredients.
+             </summary>
+             <response code="200">Ingredient list returned successfully.</response>
+             <response code="400">Ingredient has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Ingredient.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.IngredientsController.GetIngredient(System.Guid)">
+            <summary>
+            Gets a single Ingredient by ID.
+            </summary>
+            <response code="200">Ingredient record returned successfully.</response>
+            <response code="400">Ingredient has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Ingredient.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.IngredientsController.AddIngredient(SharedKernel.Dtos.RecipeManagement.Ingredient.IngredientForCreationDto)">
+            <summary>
+            Creates a new Ingredient record.
+            </summary>
+            <response code="201">Ingredient created.</response>
+            <response code="400">Ingredient has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Ingredient.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.IngredientsController.UpdateIngredient(System.Guid,SharedKernel.Dtos.RecipeManagement.Ingredient.IngredientForUpdateDto)">
+            <summary>
+            Updates an entire existing Ingredient.
+            </summary>
+            <response code="204">Ingredient updated.</response>
+            <response code="400">Ingredient has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Ingredient.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.IngredientsController.DeleteIngredient(System.Guid)">
+            <summary>
+            Deletes an existing Ingredient record.
+            </summary>
+            <response code="204">Ingredient deleted.</response>
+            <response code="400">Ingredient has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Ingredient.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.IngredientsController.AddIngredient(System.Collections.Generic.IEnumerable{SharedKernel.Dtos.RecipeManagement.Ingredient.IngredientForCreationDto},System.Guid)">
+            <summary>
+            Creates one or more Ingredient records.
+            </summary>
+            <response code="201">Ingredient List created.</response>
+            <response code="400">Ingredient List has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the list of Ingredient.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RecipesController.GetRecipes(SharedKernel.Dtos.RecipeManagement.Recipe.RecipeParametersDto)">
+             <summary>
+             Gets a list of all Recipes.
+             </summary>
+             <response code="200">Recipe list returned successfully.</response>
+             <response code="400">Recipe has missing/invalid values.</response>
+             <response code="401">This request was not able to be authenticated.</response>
+             <response code="403">The required permissions to access this resource were not present in the given request.</response>
+             <response code="500">There was an error on the server while creating the Recipe.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RecipesController.GetRecipe(System.Guid)">
+            <summary>
+            Gets a single Recipe by ID.
+            </summary>
+            <response code="200">Recipe record returned successfully.</response>
+            <response code="400">Recipe has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the Recipe.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RecipesController.AddRecipe(SharedKernel.Dtos.RecipeManagement.Recipe.RecipeForCreationDto)">
+            <summary>
+            Creates a new Recipe record.
+            </summary>
+            <response code="201">Recipe created.</response>
+            <response code="400">Recipe has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the Recipe.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RecipesController.UpdateRecipe(System.Guid,SharedKernel.Dtos.RecipeManagement.Recipe.RecipeForUpdateDto)">
+            <summary>
+            Updates an entire existing Recipe.
+            </summary>
+            <response code="204">Recipe updated.</response>
+            <response code="400">Recipe has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the Recipe.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RecipesController.DeleteRecipe(System.Guid)">
+            <summary>
+            Deletes an existing Recipe record.
+            </summary>
+            <response code="204">Recipe deleted.</response>
+            <response code="400">Recipe has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the Recipe.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RecipesController.PartiallyUpdateRecipe(System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{SharedKernel.Dtos.RecipeManagement.Recipe.RecipeForUpdateDto})">
+            <summary>
+            Updates specific properties on an existing Recipe.
+            </summary>
+            <response code="204">Recipe updated.</response>
+            <response code="400">Recipe has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the Recipe.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RolePermissionsController.GetRolePermissions(SharedKernel.Dtos.RecipeManagement.RolePermission.RolePermissionParametersDto)">
+             <summary>
+             Gets a list of all RolePermissions.
+             </summary>
+             <response code="200">RolePermission list returned successfully.</response>
+             <response code="400">RolePermission has missing/invalid values.</response>
+             <response code="401">This request was not able to be authenticated.</response>
+             <response code="403">The required permissions to access this resource were not present in the given request.</response>
+             <response code="500">There was an error on the server while creating the RolePermission.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RolePermissionsController.GetRolePermission(System.Guid)">
+            <summary>
+            Gets a single RolePermission by ID.
+            </summary>
+            <response code="200">RolePermission record returned successfully.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RolePermissionsController.AddRolePermission(SharedKernel.Dtos.RecipeManagement.RolePermission.RolePermissionForCreationDto)">
+            <summary>
+            Creates a new RolePermission record.
+            </summary>
+            <response code="201">RolePermission created.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RolePermissionsController.UpdateRolePermission(System.Guid,SharedKernel.Dtos.RecipeManagement.RolePermission.RolePermissionForUpdateDto)">
+            <summary>
+            Updates an entire existing RolePermission.
+            </summary>
+            <response code="204">RolePermission updated.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:RecipeManagement.Controllers.v1.RolePermissionsController.DeleteRolePermission(System.Guid)">
+            <summary>
+            Deletes an existing RolePermission record.
+            </summary>
+            <response code="204">RolePermission deleted.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+    </members>
+</doc>

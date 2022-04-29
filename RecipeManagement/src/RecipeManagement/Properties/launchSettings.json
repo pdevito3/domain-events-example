@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "Development": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AUTH_AUDIENCE": "recipe_management",
+        "AUTH_AUTHORITY": "https://localhost:3385",
+        "AUTH_AUTHORIZATION_URL": "https://localhost:3385/connect/authorize",
+        "AUTH_TOKEN_URL": "https://localhost:3385/connect/token",
+        "AUTH_CLIENT_ID": "recipe_management.swagger",
+        "AUTH_CLIENT_SECRET": "974d6f71-d41b-4601-9a7a-a33081f80687",
+        "DB_CONNECTION_STRING": "Host=localhost;Port=59989;Database=dev_recipemanagement;Username=postgres;Password=postgres",
+        "RMQ_HOST": "localhost",
+        "RMQ_VIRTUAL_HOST": "/",
+        "RMQ_USERNAME": "guest",
+        "RMQ_PASSWORD": "guest",
+        "JAEGER_HOST": "localhost",
+      },
+      "applicationUrl": "https://localhost:5375"
+    },
+  }
+}
