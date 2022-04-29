@@ -38,7 +38,7 @@ public abstract class BaseEntity
         IsDeleted = isDeleted;
     }
     
-    public void PublishDomainEvent(IDomainEvent @event)
+    public void QueueDomainEvent(IDomainEvent @event)
     {
         DomainEvents.Add(@event);
     }

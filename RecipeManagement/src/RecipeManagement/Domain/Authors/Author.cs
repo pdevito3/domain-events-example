@@ -33,7 +33,7 @@ public class Author : BaseEntity
             cfg.AddProfile<AuthorProfile>();
         }));
         var newAuthor = mapper.Map<Author>(authorForCreationDto);
-        newAuthor.PublishDomainEvent(new AuthorCreated(){ Author = newAuthor });
+        newAuthor.QueueDomainEvent(new AuthorCreated(){ Author = newAuthor });
         
         return newAuthor;
     }
@@ -45,7 +45,7 @@ public class Author : BaseEntity
             cfg.AddProfile<AuthorProfile>();
         }));
         mapper.Map(authorForUpdateDto, this);
-        PublishDomainEvent(new AuthorUpdated(){ Author = this });
+        QueueDomainEvent(new AuthorUpdated(){ Author = this });
     }
     
     private Author() { } // For EF

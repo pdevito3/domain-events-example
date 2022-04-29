@@ -39,7 +39,7 @@ public class Ingredient : BaseEntity
             cfg.AddProfile<IngredientProfile>();
         }));
         var newIngredient = mapper.Map<Ingredient>(ingredientForCreationDto);
-        newIngredient.PublishDomainEvent(new IngredientCreated(){ Ingredient = newIngredient });
+        newIngredient.QueueDomainEvent(new IngredientCreated(){ Ingredient = newIngredient });
         
         return newIngredient;
     }
@@ -51,7 +51,7 @@ public class Ingredient : BaseEntity
             cfg.AddProfile<IngredientProfile>();
         }));
         mapper.Map(ingredientForUpdateDto, this);
-        PublishDomainEvent(new IngredientUpdated(){ Ingredient = this });
+        QueueDomainEvent(new IngredientUpdated(){ Ingredient = this });
     }
     
     private Ingredient() { } // For EF

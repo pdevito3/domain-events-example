@@ -26,7 +26,7 @@ public class RolePermission : BaseEntity
             cfg.AddProfile<RolePermissionProfile>();
         }));
         var newRolePermission = mapper.Map<RolePermission>(rolePermissionForCreationDto);
-        newRolePermission.PublishDomainEvent(new RolePermissionCreated(){ RolePermission = newRolePermission });
+        newRolePermission.QueueDomainEvent(new RolePermissionCreated(){ RolePermission = newRolePermission });
         
         return newRolePermission;
     }
@@ -38,7 +38,7 @@ public class RolePermission : BaseEntity
             cfg.AddProfile<RolePermissionProfile>();
         }));
         mapper.Map(rolePermissionForUpdateDto, this);
-        PublishDomainEvent(new RolePermissionUpdated(){ RolePermission = this });
+        QueueDomainEvent(new RolePermissionUpdated(){ RolePermission = this });
     }
     
     private RolePermission() { } // For EF

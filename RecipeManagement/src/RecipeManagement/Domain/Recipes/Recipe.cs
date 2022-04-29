@@ -42,7 +42,7 @@ public class Recipe : BaseEntity
             cfg.AddProfile<RecipeProfile>();
         }));
         var newRecipe = mapper.Map<Recipe>(recipeForCreationDto);
-        newRecipe.PublishDomainEvent(new RecipeCreated(){ Recipe = newRecipe });
+        newRecipe.QueueDomainEvent(new RecipeCreated(){ Recipe = newRecipe });
         
         return newRecipe;
     }
@@ -54,7 +54,7 @@ public class Recipe : BaseEntity
             cfg.AddProfile<RecipeProfile>();
         }));
         mapper.Map(recipeForUpdateDto, this);
-        PublishDomainEvent(new RecipeUpdated(){ Recipe = this });
+        QueueDomainEvent(new RecipeUpdated(){ Recipe = this });
     }
     
     private Recipe() { } // For EF
