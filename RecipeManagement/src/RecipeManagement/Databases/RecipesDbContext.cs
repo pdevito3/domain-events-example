@@ -39,19 +39,21 @@ public class RecipesDbContext : DbContext
         base.OnModelCreating(modelBuilder);
             modelBuilder.FilterSoftDeletedRecords();
     }
-
+    
     public override int SaveChanges()
     {
-        _dispatchDomainEvents().GetAwaiter().GetResult();
         UpdateAuditFields();
-        return base.SaveChanges();
+        var response = base.SaveChanges();
+        _dispatchDomainEvents().GetAwaiter().GetResult();
+        return response;
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
-        await _dispatchDomainEvents();
         UpdateAuditFields();
-        return await base.SaveChangesAsync(cancellationToken);
+        var response = await base.SaveChangesAsync(cancellationToken);
+        await _dispatchDomainEvents();
+        return response;
     }
     
     private async Task _dispatchDomainEvents()
@@ -63,7 +65,9 @@ public class RecipesDbContext : DbContext
 
         foreach (var entity in domainEventEntities)
         {
-            foreach (var entityDomainEvent in entity.DomainEvents)
+            var events = entity.DomainEvents.ToArray();
+            entity.DomainEvents.Clear();
+            foreach (var entityDomainEvent in events)
                 await _mediator.Publish(entityDomainEvent);
         }
     }
